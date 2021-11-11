@@ -17,7 +17,7 @@ if($con){
         ));
     }else{
         array_push($response, array(
-            'status' => 'gagal'
+            'status' => 'Gagal'
         ));
     }
 
