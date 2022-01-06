@@ -2,36 +2,35 @@
 require_once 'connection.php';
 
 if($con){
-    $id_spp = $_POST['id_spp'];
     $angkatan = $_POST['angkatan'];
     $tahun = $_POST['tahun'];
     $nominal = $_POST['nominal'];
 
-    $insert = "INSERT INTO spp(id_spp,angkatan,tahun,nominal) VALUES('','','','')";
+    $insert = "INSERT INTO spp(angkatan,tahun,nominal) VALUES('$angkatan','$tahun','$nominal')";
 
-    if($id_spp != '' && $angkatan != '' && $tahun != '' && $nominal != ''){
+    if($angkatan != '' && $tahun != '' && $nominal != ''){
         $result = mysqli_query($con,$insert);
         $response = array();
 
         if($result){
             array_push($response,array(
-                'status' => 'Berhasil'
+                'status' => 'Berhasil Terbuat!'
             ));
         }else{
             array_push($response, array(
-                'status' => 'Gagal'
+                'status' => 'Gagal Membuat Data!'
             ));
         }
 
     }else{
         array_push($response, array(
-            'status' => 'Gagal'
+            'status' => 'Something is missing!'
         ));
     }
 
 }else{
     array_push($response, array(
-        'status' => 'Gagal'
+        'status' => 'Gagal Authentikasi!'
     ));
 
 }

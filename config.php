@@ -3,6 +3,6 @@
 define('SERVER','localhost');
 define('UID','root');
 define('PASSWORD','');
-define('DB_NAME','spp');
+define('DB_NAME','sppukk');
 
 ?>

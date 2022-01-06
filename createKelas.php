@@ -2,36 +2,35 @@
 require_once 'connection.php';
 
 if($con){
-    $id_kelas = $_POST['id_kelas'];
     $nama_kelas = $_POST['nama_kelas'];
     $jurusan = $_POST['jurusan'];
     $angkatan = $_POST['angkatan'];
 
-    $insert = "INSERT INTO kelas(id_kelas,nama_kelas,jurusan,angkatan) VALUES('','','','')";
+    $insert = "INSERT INTO kelas(nama_kelas,jurusan,angkatan) VALUES('$nama_kelas','$jurusan','$angkatan')";
 
-    if($id_kelas != '' && $nama_kelas != '' && $jurusan != '' && $angkatan != ''){
+    if($nama_kelas != '' && $jurusan != '' && $angkatan != ''){
         $result = mysqli_query($con,$insert);
         $response = array();
 
         if($result){
             array_push($response,array(
-                'status' => 'Berhasil'
+                'status' => 'Berhasil Terbuat bang!'
             ));
         }else{
             array_push($response, array(
-                'status' => 'Gagal'
+                'status' => 'Gagal Membuat Kelas...'
             ));
         }
 
     }else{
         array_push($response, array(
-            'status' => 'Gagal'
+            'status' => 'Something is ketinggalan'
         ));
     }
 
 }else{
     array_push($response, array(
-        'status' => 'Gagal'
+        'status' => 'Gagal Authentikasi'
     ));
 
 }

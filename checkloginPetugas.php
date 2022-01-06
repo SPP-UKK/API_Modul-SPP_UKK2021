@@ -5,7 +5,7 @@ if($con){
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $query = "SELECT * FROM siswa WHERE username = $username AND password = $password";
+    $query = "SELECT * FROM petugas WHERE username = $username AND password = $password";
     $result = mysqli_query($con,$query);
     $response = array();
 
@@ -13,17 +13,17 @@ if($con){
 
     if ($row>0){
         array_push($response, array(
-            'status' => 'Berhasil'
+            'status' => 'Berhasil Login!'
         ));
     }else{
         array_push($response, array(
-            'status' => 'Gagal'
+            'status' => 'Gagal Login bang..'
         ));
     }
 
 }else{
     array_push($response, array(
-        'status' => 'Gagal'
+        'status' => 'Gagal Authentikasi'
     ));
 
 }

@@ -13,17 +13,17 @@ if($con){
 
     if ($row>0){
         array_push($response, array(
-            'status' => 'Berhasil'
+            'status' => 'Berhasil Login!'
         ));
     }else{
         array_push($response, array(
-            'status' => 'Suk'
+            'status' => 'Gagal Login ngab...'
         ));
     }
 
 }else{
     array_push($response, array(
-        'status' => 'Gagal'
+        'status' => 'Gagal Authentikasi'
     ));
 
 }

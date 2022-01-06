@@ -2,37 +2,36 @@
 require_once 'connection.php';
 
 if($con){
-    $id_petugas = $_POST['id_petugas'];
     $username = $_POST['username'];
     $password = $_POST['password'];
     $nama_petugas = $_POST['nama_petugas'];
     $level = $_POST['level'];
 
-    $insert = "INSERT INTO petugas(id_petugas,username,password,nama_petugas,level) VALUES('','','','','')";
+    $insert = "INSERT INTO petugas(username,password,nama_petugas,level) VALUES('$username','$password','$nama_petugas','$level')";
 
-    if($id_petugas != '' && $username != '' && $password != '' && $nama_petugas != '' && $level != ''){
+    if($username != '' && $password != '' && $nama_petugas != '' && $level != ''){
         $result = mysqli_query($con,$insert);
         $response = array();
 
         if($result){
             array_push($response,array(
-                'status' => 'Berhasil'
+                'status' => 'Berhasil Login'
             ));
         }else{
             array_push($response, array(
-                'status' => 'Gagal'
+                'status' => 'Gagal Registrasi...'
             ));
         }
 
     }else{
         array_push($response, array(
-            'status' => 'Gagal'
+            'status' => 'Something is ketinggalan'
         ));
     }
 
 }else{
     array_push($response, array(
-        'status' => 'Gagal'
+        'status' => 'Gagal Authentikasi'
     ));
 
 }
