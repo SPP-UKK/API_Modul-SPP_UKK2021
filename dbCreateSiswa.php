@@ -33,14 +33,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo json_encode($response);
   } else {
     $sql_c = "INSERT INTO siswa (nisn,nis,nama,id_kelas,alamat,no_telp,password) VALUES('$nisn','$nis','$nama','$id_kelas','$alamat','$no_telp',MD5('$password'))";
-    if (mysqli_query($con, $sql_b)) {
+    if (mysqli_query($con, $sql_c)) {
       $response["value"] = 1;
       $response["message"] = "Sukses mendaftar Siswa";
       echo json_encode($response);
 
       for ($b = 0; $b < 12; $b++) {
         $sql_d = "INSERT INTO pembayaran (id_petugas,id_spp,nisn,tgl_bayar,bulan_spp,tahun_spp,status_bayar) VALUES('$id_petugas','$id_spp','$nisn',NULL,'$bulan','$tahun','belum')";
-        if (mysqli_query($con, $sql_c)) {
+        if (mysqli_query($con, $sql_d)) {
           $bulan++;
         } else {
           $response["value"] = 0;
