@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $nisn = $_POST['nisn'];
 
   $sql = "SELECT p.id_pembayaran, pe.nama_petugas, s.nisn, s.nama, k.nama_kelas, p.tgl_bayar, sp.nominal,
-  p.tahun_spp, p.bulan_spp
+  p.bulan_spp, p.tahun_spp, p.status_bayar, p.jumlah_bayar, p.kurang_bayar
   FROM pembayaran p 
   INNER JOIN siswa s ON p.nisn = s.nisn AND p.nisn = '$nisn'
   INNER JOIN kelas k ON s.id_kelas = k.id_kelas 
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $res = mysqli_query($con, $sql);
 
   while ($row = mysqli_fetch_array($res)) {
-    array_push($result, array('id_pembayaran' => $row[0], 'nama_petugas' => $row[1], 'nisn' => $row[2], 'nama' => $row[3], 'nama_kelas' => $row[4], 'tgl_bayar' => $row[5], 'nominal' => $row[6], 'tahun_bayar' => $row[7], 'bulan_bayar' => $row[8]));
+    array_push($result, array('id_pembayaran' => $row[0], 'nama_petugas' => $row[1], 'nisn' => $row[2], 'nama' => $row[3], 'nama_kelas' => $row[4], 'tgl_bayar' => $row[5], 'nominal' => $row[6], 'bulan_bayar' => $row[7], 'tahun_bayar' => $row[8], 'status_bayar' => $row[9], 'jumlah_bayar' => $row[10], 'kurang_bayar' => $row[11]));
   }
   echo json_encode(array("value" => 1, "result" => $result));
   mysqli_close($con);

@@ -18,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $tahun = 2021;
 
   $response = array();
-  $sql_a = "SELECT * FROM siswa WHERE nisn ='$nisn'";
-  $sql_b = "SELECT * FROM siswa WHERE password =MD5('$password')";
+  $sql_a = "SELECT nisn FROM siswa WHERE nisn ='$nisn'";
+  $sql_b = "SELECT password FROM siswa WHERE password =MD5('$password')";
   $check_nisn = mysqli_fetch_array(mysqli_query($con, $sql_a));
   $check_pass = mysqli_fetch_array(mysqli_query($con, $sql_b));
 
