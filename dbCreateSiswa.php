@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       echo json_encode($response);
 
       for ($b = 0; $b < 12; $b++) {
-        $sql_d = "INSERT INTO pembayaran (id_petugas,id_spp,nisn,tgl_bayar,bulan_spp,tahun_spp,status_bayar) VALUES('$id_petugas','$id_spp','$nisn',NULL,'$bulan','$tahun','belum')";
+        $sql_d = "INSERT INTO pembayaran (id_petugas,id_spp,nisn,tgl_bayar,bulan_spp,tahun_spp,status_bayar) VALUES('$id_petugas','$id_spp','$nisn',NULL,'$bulan','$tahun','Belum')";
         if (mysqli_query($con, $sql_d)) {
           $bulan++;
         } else {
