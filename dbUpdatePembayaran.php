@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $kurang_bayar = $check['kurang_bayar'];
 
     if ($jumlah_bayar == $nominal) {
-        $sql_b = "UPDATE pembayaran SET tgl_bayar = now(), jumlah_bayar = '$nominal', status_bayar = 'lunas' WHERE id_pembayaran = '$id_pembayaran'";
+        $sql_b = "UPDATE pembayaran SET tgl_bayar = now(), jumlah_bayar = '$nominal', status_bayar = 'Lunas' WHERE id_pembayaran = '$id_pembayaran'";
         if (mysqli_query($con, $sql_b)) {
             $response["value"] = 1;
             $response["message"] = "Sukses update data!";
