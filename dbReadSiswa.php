@@ -8,7 +8,7 @@ if($_SERVER['REQUEST_METHOD']=='GET') {
   $res = mysqli_query($con,$sql);
   $result = array();
   while($row = mysqli_fetch_array($res)){
-    array_push($result, array('nisn'=>$row[0], 'nis'=>$row[1], 'nama'=>$row[2], 'id_kelas'=>$row[3], 'alamat'=>$row[4], 'no_telp'=>$row[5], 'nama_kelas'=>$row[7], 'jurusan'=>$row[8], 'angkatan'=>$row[9]));
+    array_push($result, array('nisn'=>$row[0], 'nis'=>$row[1], 'nama'=>$row[2], 'id_kelas'=>$row[3], 'alamat'=>$row[4], 'no_telp'=>$row[5], 'nama_kelas'=>$row[8], 'jurusan'=>$row[9], 'angkatan'=>$row[10]));
   }
   echo json_encode(array("value"=>1,"result"=>$result));
   mysqli_close($con);
