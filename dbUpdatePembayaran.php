@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo json_encode($response);
         }
     } else if ($kurang_bayar > 0) {
-        $sql_c = "UPDATE pembayaran SET tgl_bayar = now(), jumlah_bayar = '$nominal', status_bayar = 'Lunas', kurang_bayar = '0' WHERE id_pembayaran = '$id_pembayaran'";
+        $sql_c = "UPDATE pembayaran SET tgl_bayar = now(), jumlah_bayar = '$nominal', status_bayar = 'Lunas', kurang_bayar = $jumlah_bayar WHERE id_pembayaran = '$id_pembayaran'";
         if (mysqli_query($con, $sql_c)) {
             $response["value"] = 1;
             $response["message"] = "Sukses update data!";
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $response["message"] = "Gagal update data!";
             echo json_encode($response);
         }
-    } else if ($jumlah_bayar > 0) {
+    } else if ($jumlah_bayar > 0 && $jumlah_bayar < $nominal) {
         $sql_d = "UPDATE pembayaran SET tgl_bayar = now(), jumlah_bayar = '$jumlah_bayar', status_bayar = 'Belum', kurang_bayar = $nominal-$jumlah_bayar WHERE id_pembayaran = '$id_pembayaran'";
         if (mysqli_query($con, $sql_d)) {
             $response["value"] = 1;
@@ -45,6 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $response["message"] = "Gagal update data!";
             echo json_encode($response);
         }
+    } else if ($jumlah_bayar > $nominal) {
+        $response["value"] = 0;
+        $response["message"] = "Jumlah terlalu banyak!";
+        echo json_encode($response);
     } else {
         $response["value"] = 0;
         $response["message"] = "Masukkan jumlah bayar!";
