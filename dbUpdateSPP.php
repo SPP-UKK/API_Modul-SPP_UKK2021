@@ -1,0 +1,33 @@
+<?php
+require_once('dbConnect.php');
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    //Data Pembayaran
+    $id_spp = $_POST['id_spp'];
+    $tahun = $_POST['tahun'];
+    $nominal = $_POST['nominal'];
+    $angkatan = $_POST['angkatan'];
+
+    $response = array();
+    $sql_a = "SELECT * FROM spp WHERE id_spp ='$id_spp'";
+    $check = mysqli_fetch_array(mysqli_query($con, $sql_a));
+
+    if (isset($check)) {
+        $sql_b = "UPDATE spp SET angkatan = '$angkatan', tahun = '$tahun', nominal = '$nominal' WHERE id_spp ='$id_spp'";
+        if (mysqli_query($con, $sql_b)) {
+            $response["value"] = 1;
+            $response["message"] = "Sukses update data!";
+            echo json_encode($response);
+        } else {
+            $response["value"] = 0;
+            $response["message"] = "Gagal update data!";
+            echo json_encode($response);
+        }
+    } else {
+        $response["value"] = 0;
+        $response["message"] = "Masukkan jumlah bayar!";
+        echo json_encode($response);
+    }
+
+    mysqli_close($con);
+}
