@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $tahun = $_POST['tahun'];
   $nominal = $_POST['nominal'];
 
-  $sql = "SELECT * FROM spp WHERE angkatan ='$angkatan' AND tahun ='$tahun' AND nominal ='$nominal'";
+  $sql = "SELECT * FROM spp WHERE angkatan ='$angkatan' AND tahun ='$tahun'";
   $check = mysqli_fetch_array(mysqli_query($con, $sql));
   if (isset($check)) {
     $response["value"] = 0;

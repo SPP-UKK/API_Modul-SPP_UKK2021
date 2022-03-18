@@ -6,17 +6,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     $sql = "SELECT * FROM petugas p WHERE p.username = '$username' AND p.password = MD5('$password') ORDER BY p.id_petugas ASC";
-    $res = mysqli_query($con, $sql);
     $result = array();
+    $res = mysqli_query($con, $sql);
+    $row = mysqli_fetch_array($res);
 
-    while ($row = mysqli_fetch_array($res)) {
-        if ($row > 0) {
-            array_push($result, array('username'=>$row[1], 'password'=>$row[2], 'nama_petugas'=>$row[3], 'level'=>$row[4]));
-            echo json_encode(array("value" => 1, "result" => $result));
-        } else {
-            array_push($result, array($row));
-            echo json_encode(array("value" => 0, "result" => $result));
-        }
+    if (isset($row)) {
+        array_push($result, array('username' => $row[1], 'password' => $row[2], 'nama_petugas' => $row[3], 'level' => $row[4]));
+        echo json_encode(array("value" => 1, "result" => $result));
+    } else {
+        $result["value"] = 0;
+        $result["message"] = "Gagal login, Silahkan coba lagi...";
+        echo json_encode($result);
     }
 
     mysqli_close($con);

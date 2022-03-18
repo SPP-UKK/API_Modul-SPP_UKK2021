@@ -9,10 +9,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $angkatan = $_POST['angkatan'];
 
     $response = array();
-    $sql_a = "SELECT * FROM kelas WHERE id_kelas ='$id_kelas'";
+    $sql_a = "SELECT * FROM kelas WHERE nama_kelas ='$nama_kelas' AND jurusan ='$jurusan' AND angkatan ='$angkatan'";
     $check = mysqli_fetch_array(mysqli_query($con, $sql_a));
 
     if (isset($check)) {
+        $response["value"] = 0;
+        $response["message"] = "oops! Data sudah terdaftar!";
+        echo json_encode($response);
+    } else {
         $sql_b = "UPDATE kelas SET angkatan = '$angkatan', nama_kelas = '$nama_kelas', jurusan = '$jurusan' WHERE id_kelas ='$id_kelas'";
         if (mysqli_query($con, $sql_b)) {
             $response["value"] = 1;
@@ -23,10 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $response["message"] = "Gagal update data!";
             echo json_encode($response);
         }
-    } else {
-        $response["value"] = 0;
-        $response["message"] = "Gagal update data!";
-        echo json_encode($response);
     }
 
     mysqli_close($con);
