@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   $response = array();
   //mendapatkan data
-  $id_spp = $_POST['id_petugas'];
+  $id_petugas = $_POST['id_petugas'];
 
   $sql = "DELETE FROM petugas WHERE id_petugas = '$id_petugas'";
   if (mysqli_query($con, $sql)) {
