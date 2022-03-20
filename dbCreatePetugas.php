@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   $response = array();
   $username = "SELECT * FROM petugas WHERE username ='$username'";
-  $password = "SELECT * FROM petugas WHERE password ='$password'";
+  $password = "SELECT * FROM petugas WHERE password =MD5('$password')";
   $checkusername = mysqli_fetch_array(mysqli_query($con, $username));
   $checkpassword = mysqli_fetch_array(mysqli_query($con, $password));
 
