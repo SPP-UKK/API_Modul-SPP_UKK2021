@@ -3,13 +3,14 @@ require_once('dbConnect.php');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     //Data Pembayaran
-    $id_kelas = $_POST['id_kelas'];
-    $nama_kelas = $_POST['nama_kelas'];
-    $jurusan = $_POST['jurusan'];
-    $angkatan = $_POST['angkatan'];
+    $id_petugas = $_POST['id_petugas'];
+    $level = $_POST['level'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $nama_petugas = $_POST['nama_petugas'];
 
     $response = array();
-    $sql_a = "SELECT * FROM kelas WHERE nama_kelas ='$nama_kelas' AND jurusan ='$jurusan' AND angkatan ='$angkatan'";
+    $sql_a = "SELECT * FROM petugas WHERE nama_petugas ='$nama_petugas' AND username ='$username' AND password =MD5('$password')";
     $check = mysqli_fetch_array(mysqli_query($con, $sql_a));
 
     if (isset($check)) {
@@ -17,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $response["message"] = "Data sudah terdaftar, silahkan coba lagi...";
         echo json_encode($response);
     } else {
-        $sql_b = "UPDATE kelas SET angkatan = '$angkatan', nama_kelas = '$nama_kelas', jurusan = '$jurusan' WHERE id_kelas ='$id_kelas'";
+        $sql_b = "UPDATE petugas SET level = '$level', username = '$username', password = MD5('$password'), nama_petugas = '$nama_petugas' WHERE id_petugas ='$id_petugas'";
         if (mysqli_query($con, $sql_b)) {
             $response["value"] = 1;
             $response["message"] = "Sukses update data!";

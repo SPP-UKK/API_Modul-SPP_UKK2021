@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (isset($check)) {
         $response["value"] = 0;
-        $response["message"] = "oops! Data sudah terdaftar!";
+        $response["message"] = "Data sudah terdaftar, silahkan coba lagi...";
         echo json_encode($response);
     } else {
         $sql_b = "UPDATE spp SET nominal = '$nominal' WHERE id_spp ='$id_spp'";
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo json_encode($response);
         } else {
             $response["value"] = 0;
-            $response["message"] = "Gagal update data!";
+            $response["message"] = "Gagal update data, silahkan coba lagi...";
             echo json_encode($response);
         }
     }

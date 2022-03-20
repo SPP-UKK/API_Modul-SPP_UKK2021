@@ -9,12 +9,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $nama_petugas = $_POST['nama_petugas'];
 
   $response = array();
-  $sql = "SELECT * FROM petugas WHERE username ='$username'";
-  $check = mysqli_fetch_array(mysqli_query($con, $sql));
-  
-  if (isset($check)) {
+  $username = "SELECT * FROM petugas WHERE username ='$username'";
+  $password = "SELECT * FROM petugas WHERE password ='$password'";
+  $checkusername = mysqli_fetch_array(mysqli_query($con, $username));
+  $checkpassword = mysqli_fetch_array(mysqli_query($con, $password));
+
+  if (isset($checkusername)) {
     $response["value"] = 0;
-    $response["message"] = "Username sudah terdaftar!";
+    $response["message"] = "Username sudah terdaftar, silahkan coba lagi...";
+    echo json_encode($response);
+  } else if (isset($checkpassword)) {
+    $response["value"] = 0;
+    $response["message"] = "Password sudah terdaftar, silahkan coba lagi...";
     echo json_encode($response);
   } else {
     $sql = "INSERT INTO petugas (username,password,nama_petugas,level) VALUES('$username',MD5('$password'),'$nama_petugas','$level')";
