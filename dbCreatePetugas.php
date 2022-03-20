@@ -9,10 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $nama_petugas = $_POST['nama_petugas'];
 
   $response = array();
-  $username = "SELECT * FROM petugas WHERE username ='$username'";
-  $password = "SELECT * FROM petugas WHERE password =MD5('$password')";
-  $checkusername = mysqli_fetch_array(mysqli_query($con, $username));
-  $checkpassword = mysqli_fetch_array(mysqli_query($con, $password));
+  $a = "SELECT * FROM petugas WHERE username ='$username'";
+  $b = "SELECT * FROM petugas WHERE password =MD5('$password')";
+  $checkusername = mysqli_fetch_array(mysqli_query($con, $a));
+  $checkpassword = mysqli_fetch_array(mysqli_query($con, $b));
 
   if (isset($checkusername)) {
     $response["value"] = 0;

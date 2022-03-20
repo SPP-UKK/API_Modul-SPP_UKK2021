@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nominal = $_POST['nominal'];
 
     $response = array();
-    $sql_a = "SELECT * FROM spp WHERE nominal ='$nominal' AND id_spp ='$id_spp'";
+    $sql_a = "SELECT * FROM spp WHERE nominal = '$nominal' AND id_spp ='$id_spp'";
     $check = mysqli_fetch_array(mysqli_query($con, $sql_a));
 
     if (isset($check)) {

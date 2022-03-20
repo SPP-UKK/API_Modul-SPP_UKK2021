@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $check = mysqli_fetch_array(mysqli_query($con, $sql));
   if (isset($check)) {
     $response["value"] = 0;
-    $response["message"] = "oops! Data sudah terdaftar!";
+    $response["message"] = "Data sudah terdaftar, silahkan coba lagi...";
     echo json_encode($response);
   } else {
     $sql = "INSERT INTO kelas (angkatan,nama_kelas,jurusan) VALUES('$angkatan','$nama_kelas','$jurusan')";
