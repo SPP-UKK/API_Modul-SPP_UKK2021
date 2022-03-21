@@ -2,7 +2,6 @@
 require_once('dbConnect.php');
 if($_SERVER['REQUEST_METHOD']=='GET') {
   $sql = "SELECT * FROM siswa s INNER JOIN kelas k ON s.id_kelas = k.id_kelas INNER JOIN spp sp ON s.id_spp = sp.id_spp ORDER BY k.nama_kelas ASC";
-
   $res = mysqli_query($con,$sql);
   $result = array();
   while($row = mysqli_fetch_array($res)){
