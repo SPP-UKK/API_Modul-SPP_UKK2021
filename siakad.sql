@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2022 at 06:09 PM
+-- Generation Time: Mar 23, 2022 at 03:46 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `espepe`
+-- Database: `siakad`
 --
 
 -- --------------------------------------------------------
@@ -50,7 +50,7 @@ INSERT INTO `kelas` (`id_kelas`, `nama_kelas`, `jurusan`, `angkatan`) VALUES
 CREATE TABLE `pembayaran` (
   `id_pembayaran` int(11) NOT NULL,
   `id_petugas` int(11) NOT NULL,
-  `id_spp` int(11) NOT NULL,
+  `id_spp` int(11) DEFAULT NULL,
   `nisn` char(10) NOT NULL,
   `tgl_bayar` date DEFAULT NULL,
   `bulan_spp` int(2) NOT NULL,
@@ -65,18 +65,18 @@ CREATE TABLE `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`id_pembayaran`, `id_petugas`, `id_spp`, `nisn`, `tgl_bayar`, `bulan_spp`, `tahun_spp`, `status_bayar`, `jumlah_bayar`, `kurang_bayar`) VALUES
-(1, 1, 1, '0040594843', '2022-03-21', 7, 2021, 'Belum', 300000, 200000),
-(2, 1, 1, '0040594843', NULL, 8, 2021, 'Belum', 0, 0),
-(3, 1, 1, '0040594843', NULL, 9, 2021, 'Belum', 0, 0),
-(4, 1, 1, '0040594843', NULL, 10, 2021, 'Belum', 0, 0),
-(5, 1, 1, '0040594843', NULL, 11, 2021, 'Belum', 0, 0),
-(6, 1, 1, '0040594843', NULL, 12, 2021, 'Belum', 0, 0),
-(7, 1, 1, '0040594843', NULL, 1, 2022, 'Belum', 0, 0),
-(8, 1, 1, '0040594843', '2022-03-21', 2, 2022, 'Lunas', 500000, 0),
-(9, 1, 1, '0040594843', NULL, 3, 2022, 'Belum', 0, 0),
-(10, 1, 1, '0040594843', NULL, 4, 2022, 'Belum', 0, 0),
-(11, 1, 1, '0040594843', NULL, 5, 2022, 'Belum', 0, 0),
-(12, 1, 1, '0040594843', NULL, 6, 2022, 'Belum', 0, 0);
+(61, 1, 1, '0040594843', NULL, 7, 2021, 'Belum', 0, 0),
+(62, 1, 1, '0040594843', NULL, 8, 2021, 'Belum', 0, 0),
+(63, 1, 1, '0040594843', NULL, 9, 2021, 'Belum', 0, 0),
+(64, 1, 1, '0040594843', NULL, 10, 2021, 'Belum', 0, 0),
+(65, 1, 1, '0040594843', NULL, 11, 2021, 'Belum', 0, 0),
+(66, 1, 1, '0040594843', NULL, 12, 2021, 'Belum', 0, 0),
+(67, 1, 1, '0040594843', NULL, 1, 2022, 'Belum', 0, 0),
+(68, 1, 1, '0040594843', NULL, 2, 2022, 'Belum', 0, 0),
+(69, 1, 1, '0040594843', NULL, 3, 2022, 'Belum', 0, 0),
+(70, 1, 1, '0040594843', NULL, 4, 2022, 'Belum', 0, 0),
+(71, 1, 1, '0040594843', NULL, 5, 2022, 'Belum', 0, 0),
+(72, 1, 1, '0040594843', NULL, 6, 2022, 'Belum', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -98,8 +98,9 @@ CREATE TABLE `petugas` (
 
 INSERT INTO `petugas` (`id_petugas`, `username`, `password`, `nama_petugas`, `level`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Mimin SiAKAD', 'Admin'),
-(2, 'tes', '28b662d883b6d76fd96e4ddc5e9ba780', 'Namanya Petugas', 'Petugas'),
-(3, 'devon', 'e50da88aa796637e5e634006d6db525e', 'Gregorius Devon', 'Admin');
+(2, 'devon', 'e50da88aa796637e5e634006d6db525e', 'Gregorius Devon', 'Admin'),
+(3, 'tes', '28b662d883b6d76fd96e4ddc5e9ba780', 'Namanya Petugas', 'Petugas'),
+(4, 'lilkitte', '82d35f9b891c987a8082b2a18f2e00fe', 'Ada lah', 'Petugas');
 
 -- --------------------------------------------------------
 
@@ -112,7 +113,6 @@ CREATE TABLE `siswa` (
   `nis` char(8) NOT NULL,
   `nama` varchar(35) NOT NULL,
   `id_kelas` int(11) NOT NULL,
-  `id_spp` int(11) NOT NULL,
   `alamat` text NOT NULL,
   `no_telp` varchar(13) NOT NULL,
   `password` varchar(34) NOT NULL
@@ -122,8 +122,8 @@ CREATE TABLE `siswa` (
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`nisn`, `nis`, `nama`, `id_kelas`, `id_spp`, `alamat`, `no_telp`, `password`) VALUES
-('0040594843', '12345678', 'Gregorius Devon Bramantyo', 1, 1, 'Malang', '081336267047', 'e50da88aa796637e5e634006d6db525e');
+INSERT INTO `siswa` (`nisn`, `nis`, `nama`, `id_kelas`, `alamat`, `no_telp`, `password`) VALUES
+('0040594843', '12345678', 'Gregorius Devon Bramantyo', 1, 'Malang', '081336267047', '28b662d883b6d76fd96e4ddc5e9ba780');
 
 -- --------------------------------------------------------
 
@@ -177,8 +177,7 @@ ALTER TABLE `petugas`
 ALTER TABLE `siswa`
   ADD PRIMARY KEY (`nisn`),
   ADD UNIQUE KEY `password` (`password`),
-  ADD KEY `id_kelas` (`id_kelas`),
-  ADD KEY `id_spp` (`id_spp`);
+  ADD KEY `id_kelas` (`id_kelas`);
 
 --
 -- Indexes for table `spp`
@@ -200,13 +199,13 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `petugas`
 --
 ALTER TABLE `petugas`
-  MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `spp`
@@ -223,15 +222,14 @@ ALTER TABLE `spp`
 --
 ALTER TABLE `pembayaran`
   ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`id_petugas`) REFERENCES `petugas` (`id_petugas`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pembayaran_ibfk_2` FOREIGN KEY (`id_spp`) REFERENCES `siswa` (`id_spp`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pembayaran_ibfk_3` FOREIGN KEY (`nisn`) REFERENCES `siswa` (`nisn`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pembayaran_ibfk_3` FOREIGN KEY (`nisn`) REFERENCES `siswa` (`nisn`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pembayaran_ibfk_4` FOREIGN KEY (`id_spp`) REFERENCES `spp` (`id_spp`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `siswa`
 --
 ALTER TABLE `siswa`
-  ADD CONSTRAINT `siswa_ibfk_1` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `siswa_ibfk_2` FOREIGN KEY (`id_spp`) REFERENCES `spp` (`id_spp`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `siswa_ibfk_1` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
