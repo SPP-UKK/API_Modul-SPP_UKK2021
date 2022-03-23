@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo json_encode(array("value" => 1, "result" => $result));
     } else {
         $result["value"] = 0;
-        $result["message"] = "Gagal login, Silahkan coba lagi...";
+        $result["message"] = "NISN atau Password, Silahkan coba lagi...";
         echo json_encode($result);
     }
 

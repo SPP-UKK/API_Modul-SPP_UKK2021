@@ -1,7 +1,7 @@
 <?php
 require_once('dbConnect.php');
 if($_SERVER['REQUEST_METHOD']=='GET') {
-  $sql = "SELECT * FROM petugas p ORDER BY p.nama_petugas ASC";
+  $sql = "SELECT * FROM petugas";
   $res = mysqli_query($con,$sql);
   $result = array();
   while($row = mysqli_fetch_array($res)){

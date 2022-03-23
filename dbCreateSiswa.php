@@ -6,12 +6,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $nisn = $_POST['nisn'];
   $nis = $_POST['nis'];
   $nama = $_POST['nama'];
-  $id_kelas = $_POST['id_kelas'];
-  $id_spp = $_POST['id_spp'];
   $alamat = $_POST['alamat'];
   $no_telp = $_POST['no_telp'];
   $password = $_POST['password'];
   $id_petugas = $_POST['id_petugas'];
+  $id_kelas = $_POST['id_kelas'];
+  $id_spp = $_POST['id_spp'];
 
   //Data Pembayaran
   $bulan = 7;
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo json_encode($response);
 
   } else {
-    $sql_c = "INSERT INTO siswa (nisn,nis,nama,id_kelas,id_spp,alamat,no_telp,password) VALUES('$nisn','$nis','$nama','$id_kelas','$id_spp','$alamat','$no_telp',MD5('$password'))";
+    $sql_c = "INSERT INTO siswa (nisn,nis,nama,id_kelas,alamat,no_telp,password) VALUES('$nisn','$nis','$nama','$id_kelas','$alamat','$no_telp',MD5('$password'))";
     if (mysqli_query($con, $sql_c)) {
       $response["value"] = 1;
       $response["message"] = "Sukses mendaftar Siswa";
