@@ -17,11 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $bulan = 7;
   $tahun = 2021;
 
-  $response = array();
-
   //Checker
   $sql_a = "SELECT nisn FROM siswa WHERE nisn ='$nisn'";
   $sql_b = "SELECT password FROM siswa WHERE password =MD5('$password')";
+  $response = array();
   $check_nisn = mysqli_fetch_array(mysqli_query($con, $sql_a));
   $check_pass = mysqli_fetch_array(mysqli_query($con, $sql_b));
 

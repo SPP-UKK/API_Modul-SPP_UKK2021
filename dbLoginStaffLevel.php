@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $row = mysqli_fetch_array($res);
 
     if (isset($row)) {
-        array_push($result, array('username' => $row[1], 'password' => $row[2], 'nama_petugas' => $row[3], 'level' => $row[4]));
+        array_push($result, array('id_petugas' => $row[0], 'username' => $row[1], 'password' => $row[2], 'nama_petugas' => $row[3], 'level' => $row[4]));
         echo json_encode(array("value" => 1, "result" => $result));
     } else {
         $result["value"] = 0;
