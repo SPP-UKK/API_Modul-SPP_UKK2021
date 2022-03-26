@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $response["message"] = "Sukses mengganti Siswa";
             echo json_encode($response);
 
-            $sql_c = "UPDATE pembayaran SET id_spp = '$id_spp', id_petugas = '$id_petugas' WHERE nisn ='$nisn' AND id_petugas ='$id_petugas' AND status_bayar LIKE '%belum%'";
+            $sql_c = "UPDATE pembayaran SET id_spp = '$id_spp', id_petugas = '$id_petugas' WHERE nisn ='$nisn' AND id_petugas ='$id_petugas' AND kurang_bayar = 0 AND status_bayar LIKE '%belum%'";
             if (mysqli_query($con, $sql_c)) {
                 $response["value"] = 1;
                 $response["message"] = "Sukses mengganti Pembayaran";
