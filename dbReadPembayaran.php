@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   INNER JOIN siswa s ON p.nisn = s.nisn AND p.nisn = '$nisn'
   INNER JOIN kelas k ON s.id_kelas = k.id_kelas 
   INNER JOIN spp sp ON p.id_spp = sp.id_spp 
-  INNER JOIN petugas pe ON p.id_petugas = pe.id_petugas";
+  INNER JOIN petugas pe ON p.id_petugas = pe.id_petugas ORDER BY p.id_pembayaran ASC";
 
   $result = array();
   $res = mysqli_query($con, $sql);

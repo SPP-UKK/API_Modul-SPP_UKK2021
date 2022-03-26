@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   $username = $_POST['username'];
 
-  $sql = "SELECT * FROM petugas p WHERE p.username = '$username' ORDER BY p.id_petugas ASC";
+  $sql = "SELECT * FROM petugas p WHERE p.username = '$username'";
   $result = array();
   $res = mysqli_query($con, $sql);
   $row = mysqli_fetch_array($res);
