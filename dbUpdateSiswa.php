@@ -13,12 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_spp = $_POST['id_spp'];
 
     $response = array();
-    $sql_a = "SELECT * FROM siswa WHERE nama ='$nama' AND password =MD5('$password')";
+    $sql_a = "SELECT * FROM siswa WHERE password = MD5('$password')";
     $check = mysqli_fetch_array(mysqli_query($con, $sql_a));
 
     if (isset($check)) {
         $response["value"] = 0;
-        $response["message"] = "Data sudah terdaftar, silahkan coba lagi...";
+        $response["message"] = "Password sudah terdaftar, silahkan coba lagi...";
         echo json_encode($response);
     } else {
         $sql_b = "UPDATE siswa SET nama = '$nama', alamat = '$alamat', password = MD5('$password'), no_telp = '$no_telp', id_kelas = '$id_kelas' WHERE nisn ='$nisn'";
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $response["message"] = "Sukses mengganti Siswa";
             echo json_encode($response);
 
-            $sql_c = "UPDATE pembayaran SET id_spp = '$id_spp' WHERE nisn ='$nisn'";
+            $sql_c = "UPDATE pembayaran SET id_spp = '$id_spp', id_petugas = '$id_petugas' WHERE nisn ='$nisn' AND id_petugas ='$id_petugas' AND status_bayar LIKE '%belum%'";
             if (mysqli_query($con, $sql_c)) {
                 $response["value"] = 1;
                 $response["message"] = "Sukses mengganti Pembayaran";
