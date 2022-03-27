@@ -20,9 +20,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   //Checker
   $sql_a = "SELECT nisn FROM siswa WHERE nisn ='$nisn'";
   $sql_b = "SELECT password FROM siswa WHERE password =MD5('$password')";
+  $sql_c = "SELECT nis FROM siswa WHERE nis ='$nis'";
+  $sql_d = "SELECT nama FROM siswa WHERE nama ='$nama'";
+  $sql_e = "SELECT no_telp FROM siswa WHERE no_telp ='$no_telp'";
   $response = array();
   $check_nisn = mysqli_fetch_array(mysqli_query($con, $sql_a));
   $check_pass = mysqli_fetch_array(mysqli_query($con, $sql_b));
+  $check_nis = mysqli_fetch_array(mysqli_query($con, $sql_c));
+  $check_nama = mysqli_fetch_array(mysqli_query($con, $sql_d));
+  $check_no_telp = mysqli_fetch_array(mysqli_query($con, $sql_e));
 
   if (isset($check_nisn)) {
     $response["value"] = 0;
@@ -34,6 +40,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $response["message"] = "Gunakan Password lain";
     echo json_encode($response);
 
+  } else if (isset($check_nis)) {
+    $response["value"] = 0;
+    $response["message"] = "NIS sudah terdaftar!";
+    echo json_encode($response);
+
+  } else if (isset($check_nama)) {
+    $response["value"] = 0;
+    $response["message"] = "Nama sudah terdaftar!";
+    echo json_encode($response);
+
+  } else if (isset($check_no_telp)) {
+    $response["value"] = 0;
+    $response["message"] = "Nomor Ponsel sudah terdaftar!";
+    echo json_encode($response);
   } else {
     $sql_c = "INSERT INTO siswa (nisn,nis,nama,id_kelas,alamat,no_telp,password) VALUES('$nisn','$nis','$nama','$id_kelas','$alamat','$no_telp',MD5('$password'))";
     if (mysqli_query($con, $sql_c)) {
@@ -56,7 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           $tahun++;
         }
       }
-
     } else {
       $response["value"] = 0;
       $response["message"] = "Gagal mendaftar Siswa";
