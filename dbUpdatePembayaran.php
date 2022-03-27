@@ -38,8 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else if ($jumlah_bayar > 0 && $jumlah_bayar < $nominal && $kurang_bayar > 0) {
         $sql_d = "UPDATE pembayaran SET tgl_bayar = now(), jumlah_bayar = jumlah_bayar+'$jumlah_bayar', id_petugas = '$id_petugas', status_bayar = 'Belum', kurang_bayar = kurang_bayar-$jumlah_bayar WHERE id_pembayaran = '$id_pembayaran'";
         mysqli_query($con, $sql_d);
-        $kurangnya = $check['kurang_bayar'];
 
+        $check2 = mysqli_fetch_array(mysqli_query($con, $sql_a));
+        $kurangnya = $check2['kurang_bayar'];
         if ($kurangnya == 0) {
             $sql_f = "UPDATE pembayaran SET tgl_bayar = now(), jumlah_bayar = '$nominal', id_petugas = '$id_petugas', status_bayar = 'Lunas' WHERE id_pembayaran = '$id_pembayaran'";
             if (mysqli_query($con, $sql_f)) {
@@ -60,7 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $response["message"] = "Gagal update, silahkan coba lagi...";
             echo json_encode($response);
         }
-
     } else if ($jumlah_bayar > $nominal) {
         $response["value"] = 0;
         $response["message"] = "Jumlah terlalu banyak!";
