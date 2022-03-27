@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo json_encode(array("value" => 1, "result" => $result));
   } else {
     $result["value"] = 0;
-    $result["message"] = "Data Kosong...";
+    $result["message"] = "Data SPP Angkatan Kosong...";
     echo json_encode($result);
   }
 
