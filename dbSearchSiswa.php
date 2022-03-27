@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   $search = $_POST['search'];
 
-  $sql = "SELECT * FROM siswa s INNER JOIN kelas k ON s.id_kelas = k.id_kelas WHERE s.nama LIKE '%$search%' ORDER BY nama ASC";
+  $sql = "SELECT * FROM siswa s INNER JOIN kelas k ON s.id_kelas = k.id_kelas WHERE s.nama LIKE '%$search%' ORDER BY k.nama_kelas ASC, s.nama ASC";
   $result = array();
   $res = mysqli_query($con, $sql);
   $res2 = mysqli_query($con, $sql);
