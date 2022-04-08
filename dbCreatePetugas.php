@@ -3,7 +3,6 @@ require_once('dbConnect.php');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   //Data Petugas
-  $level = $_POST['level'];
   $username = $_POST['username'];
   $password = $_POST['password'];
   $nama_petugas = $_POST['nama_petugas'];
@@ -23,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $response["message"] = "Password sudah terdaftar, silahkan coba lagi...";
     echo json_encode($response);
   } else {
-    $sql = "INSERT INTO petugas (username,password,nama_petugas,level) VALUES('$username',MD5('$password'),'$nama_petugas','$level')";
+    $sql = "INSERT INTO petugas (username,password,nama_petugas,level) VALUES('$username',MD5('$password'),'$nama_petugas','Petugas')";
     if (mysqli_query($con, $sql)) {
       $response["value"] = 1;
       $response["message"] = "Sukses mendaftar Petugas";

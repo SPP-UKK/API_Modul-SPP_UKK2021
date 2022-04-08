@@ -4,7 +4,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     //Data Pembayaran
     $id_petugas = $_POST['id_petugas'];
-    $level = $_POST['level'];
     $username = $_POST['username'];
     $password = $_POST['password'];
     $nama_petugas = $_POST['nama_petugas'];
@@ -18,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $response["message"] = "Data sudah terdaftar, silahkan coba lagi...";
         echo json_encode($response);
     } else {
-        $sql_b = "UPDATE petugas SET level = '$level', username = '$username', password = MD5('$password'), nama_petugas = '$nama_petugas' WHERE id_petugas ='$id_petugas'";
+        $sql_b = "UPDATE petugas SET username = '$username', password = MD5('$password'), nama_petugas = '$nama_petugas' WHERE id_petugas ='$id_petugas'";
         if (mysqli_query($con, $sql_b)) {
             $response["value"] = 1;
             $response["message"] = "Sukses update data!";

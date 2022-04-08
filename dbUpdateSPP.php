@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (isset($check)) {
         $response["value"] = 0;
-        $response["message"] = "Data sudah terdaftar, silahkan coba lagi...";
+        $response["message"] = "Nominal sudah terdaftar, silahkan coba lagi...";
         echo json_encode($response);
     } else {
         $sql_b = "UPDATE spp SET nominal = '$nominal' WHERE id_spp ='$id_spp'";

@@ -1,9 +1,7 @@
 <?php
 require_once('dbConnect.php');
 if($_SERVER['REQUEST_METHOD']=='GET') {
-  $sql = "SELECT * 
-  FROM kelas k
-  ORDER BY k.jurusan ASC, k.angkatan ASC";
+  $sql = "SELECT * FROM kelas ORDER BY jurusan ASC, angkatan DESC";
   $res = mysqli_query($con,$sql);
   $result = array();
   while($row = mysqli_fetch_array($res)){
